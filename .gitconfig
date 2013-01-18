@@ -6,6 +6,7 @@
         signingkey = Michael G Schwern <schwern@pobox.com>
 
 [sendemail]
+        # Use Gmail to send email.
         smtpencryption = tls
         smtpserver = smtp.gmail.com
         smtpuser = schwern@gmail.com

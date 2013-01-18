@@ -1,0 +1,148 @@
+# If you use this file, remember to change the [user] and [sendemail] sections.
+
+[user]
+	name = Michael G. Schwern
+        email = schwern@pobox.com
+        signingkey = Michael G Schwern <schwern@pobox.com>
+
+[sendemail]
+        smtpencryption = tls
+        smtpserver = smtp.gmail.com
+        smtpuser = schwern@gmail.com
+        smtpserverport = 587
+
+[color]
+        # Turn on colors as applicable
+        ui = auto
+
+[alias]
+        # Shortcuts
+        st = status
+        br = branch
+        co = checkout
+ 
+        # Normal commit command, but show the diff being committed
+        ci = commit -v
+
+        # Interactive commit
+        cii = commit -v --interactive
+
+        # Commit everything
+        cia = commit -v -a
+
+        # Interactive add
+        addi = add --interactive
+
+        # Patch add, like interactive but quicker
+        addp = add -p
+
+        # Add only changes to already checked in files
+        addchanged = add -u
+
+        # Word based diff
+        diffwords = diff --word-diff
+
+        rebranch = branch -f
+
+        # Make git-svn work a bit more like a normal remote
+        svnpush = svn dcommit
+        svnpull = svn rebase
+
+        # Signed cherry picks
+        pick = cherry-pick -s
+
+        # Save and pop the stash
+        save = stash save
+        pop = stash pop
+
+        # Interactive stashing
+        savepatch = stash save --patch
+
+        # Stash only unadded stuff
+        savescratch = stash save --keep-index
+
+        # blame but ignore whitespace
+        praise = blame -w -n
+
+        # More intense digging, follow file copies and moves
+        archeology = blame -w -C -M -n
+        whodoikill = blame -w -C -M -n
+
+        # More intense logging to follow file copies and moves
+        logfile = log --follow -C
+
+        # Show patches for the immediately previous pull (otherwise its the last commit)
+        news = log -p HEAD@{1}..HEAD@{0}
+
+        # Pretty print the log showing branches
+        hist = log --pretty=format:'%C(yellow)%h%Creset %s %Cblue%d%Creset' --graph --all
+
+        # List who's made edits and how many
+        who = shortlog -sen --
+
+        # Search for a string in a change across history  git grep4d <string> file
+        grep4d = !sh -c 'git log --follow -C -p -S'$1' $2' -
+
+        # Show the log with the data of each change
+        logdate = log --format=format:'%ad %d %h %s %an%n' --date=short
+
+        # Show the date of the last change to each branch.  Doesn't work quite right.
+        brdate = !"sh -c 'for b in `git branch --no-merged` ; \
+                   do git logdate -1 -r $b --; done'" 
+
+        # An attempt to emulate "svn up"
+        up = !git stash && git pull origin master && git stash apply
+
+        # Signed tags
+        stag = tag -s
+
+        # Replace a tag
+        retag = tag -f
+
+        # Tags with notes attached
+        bookmark = tag -a
+
+        # Remove everything from the staging area, but keep the working copy
+        unstage = reset HEAD
+
+        # Undo the last commit, but leave it in the working copy
+        redo = reset --soft HEAD^
+
+        # Throw out all work up to the last commit
+        clear = reset --hard HEAD
+
+        # Undo the last commit
+        undo = reset --hard HEAD^
+
+        # Pull but rebase instead of merge
+        repull = pull --rebase
+
+        # Always merge, never fast-forward, a feature branch.  The branch makes it
+        # easier to see why the changes were done.  The merge point acts as a point
+        # to summarize the changes.
+        mergefeature = merge --no-ff
+
+        # Create a bare, cloneable repo from a development repo
+        makerepo = clone --bare
+
+        # Attempt to emulate 'svn export'.  git export <target dir>
+        export = !sh -c 'git checkout-index --prefix=$1 -a' -
+
+        # send a patch for git-svn to git.git
+        send-git-svn-patches = send-email --to git@vger.kernel.org --to gitster@pobox.com --cc robbat2@gentoo.org --cc bwalton@artsci.utoronto.ca --cc normalperson@yhbt.net --cc jrnieder@gmail.com --cc schwern@pobox.com --compose
+
+[branch]
+        # When branching and making remotes, set up merge tracking automatically
+        autosetupmerge = true
+
+[svn]
+#	authorsfile = /Users/schwern/.authors
+        
+[achievement]
+	upload = true
+
+[push]
+	default = tracking
+
+[core]
+	quotepath = false

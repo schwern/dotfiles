@@ -1,0 +1,3 @@
+alias build=./Build
+
+alias ls='ls -A --color'

@@ -1,0 +1,6 @@
+export PAGER=less
+export LESS=-iSR
+export EDITOR=emacs
+export ACK_PAGER=$PAGER
+export IGNOREEOF=
+

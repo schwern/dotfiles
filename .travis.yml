@@ -1,0 +1,34 @@
+language: perl
+perl:
+  - "5.8"
+  # 5.8 threads are always squirrely
+  - "5.8-thr"
+  - "5.10"
+  # 5.10 threads, too
+  - "5.10-thr"
+  - "5.12"
+  - "5.14"
+  - "5.16"
+  - "5.18"
+  - "5.20"
+  - "5.22"
+  - "5.24"
+  # Test the latest and greatest with threads
+  - "5.24-thr"
+  - "dev"
+matrix:
+  include:
+    # Devel::Cover + coveralls.io reporting
+    # Use the latest and greatest with threads for the most coverage
+    - perl: 5.24-thr
+      env: COVERAGE=1
+  allow_failures:
+    # ignore failures for dev perl releases
+    - perl: dev
+
+sudo: false
+
+before_install:
+  # Handle all the build and test steps.
+  # See https://github.com/travis-perl/helpers
+  - eval $(curl https://travis-perl.github.io/init) --auto
